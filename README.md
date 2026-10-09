@@ -1,82 +1,100 @@
-# Moodle Module Downloader
+<h3 align="center">Moodle Module Downloader</h3>
+<p align="center">Download an entire Moodle 4 module as a single zip, organised into folders by section.</p>
 
-Download every file from a Moodle module in one go, as a single zip with a folder for each section (Week 1, Week 2, Resources and so on).
+<p align="center">
+  <a href="LICENSE">
+    <img alt="MIT licence" src="https://img.shields.io/github/license/ashgar99/moodle-module-downloader?color=brightgreen" />
+  </a>
+  <img alt="Moodle 4.x" src="https://img.shields.io/badge/Moodle-4.x-orange" />
+  <img alt="No installation required" src="https://img.shields.io/badge/install-not%20required-blue" />
+</p>
 
-No installing, no terminal, no extension. It runs in your browser while you're logged in to Moodle, using a bookmark or a quick paste into the browser console.
 
-Built by a SOAS student who wanted to keep her course materials after graduating. It works on any Moodle 4 site, not just SOAS.
+## Features ✨
 
-## What you get
+- Downloads every file and folder in a module in one go, not one section at a time.
+- Packages everything into a single zip, with a numbered folder for each section so the order matches Moodle.
+- Keeps the internal structure of Moodle folders.
+- Runs in your browser using your existing login. There is no extension or software to install.
+- Works with Chrome, Brave, Edge and Firefox.
+
+
+## Usage 🛠
+
+### Option 1: Bookmarklet (recommended)
+
+Set this up once, then use it on any module with a single click.
+
+1. Open [`bookmarklet.txt`](bookmarklet.txt) and click **Copy raw file**.
+2. Show your bookmarks bar (**Cmd + Shift + B** on macOS, **Ctrl + Shift + B** on Windows).
+3. Right-click the bookmarks bar and choose **Add page** or **Add bookmark**.
+4. Name it `Download Moodle module`, paste the copied text into the **URL** field and save.
+5. Log in to Moodle, open the main page of a module and click the bookmark.
+
+### Option 2: Browser console
+
+1. Log in to Moodle and open the main page of a module (for example `https://moodle.example.ac.uk/course/view.php?id=12345`).
+2. Open the developer console (**Cmd + Option + J** on macOS, **Ctrl + Shift + J** on Windows).
+3. Paste the contents of [`moodle-downloader.js`](moodle-downloader.js) and press **Enter**.
+   - If pasting is blocked, type `allow pasting`, press **Enter**, then paste again.
+
+Progress is shown in the console. When it finishes, the zip downloads automatically. Larger modules can take a minute or two, so keep the tab open until the download appears.
+
+
+## Output 📁
 
 ```
-J400- Advanced Japanese A25-26 (155901470-A25-26).zip
+ABC123 Example Module.zip
 ├── 01 Welcome/
 ├── 02 Module Overview/
-│   └── J400 Handbook.pdf
-├── 06 Resources/
-├── 07 Week 1 Monday/
-│   ├── Lesson 1 slides.pdf
-│   └── Reading pack/          (Moodle folders keep their own subfolders)
+│   └── Module Handbook.pdf
+├── 03 Resources/
+│   └── Reading List/
+│       └── Week 1 Reading.pdf
+├── 04 Week 1/
+│   └── Lecture Slides.pptx
 └── ...
 ```
 
-Sections are numbered so they stay in the same order as on Moodle.
 
-## Option 1: one-click bookmark (easiest)
+## Limitations ⚠️
 
-Set this up once and use it on every module.
+The following are not included:
 
-1. Open [`bookmarklet.txt`](bookmarklet.txt), click the **Copy raw file** button (the two overlapping squares at the top right of the file).
-2. In your browser, show the bookmarks bar (**Cmd + Shift + B** on a Mac, **Ctrl + Shift + B** on Windows).
-3. Right-click the bookmarks bar and choose **Add page** (Chrome or Brave) or **Add Bookmark** (Firefox, Edge).
-4. Name it **Download Moodle module** and paste what you copied into the **URL** box. Save.
-5. Log in to Moodle, open a module's main page, and click the bookmark.
+- Lecture recordings hosted on external platforms such as Panopto.
+- Links to external websites.
+- Your own assignment submissions and feedback.
+- Any content you do not have permission to view.
 
-The zip downloads when it's finished. Bigger modules can take a minute or two, so stay on the page until it appears. To watch progress, open the console (see below).
 
-## Option 2: paste into the console
+## Troubleshooting 🔧
 
-1. Log in to Moodle and open a module's main page (the address will look like `.../course/view.php?id=12345`).
-2. Open the browser console: **Cmd + Option + J** on a Mac, or **Ctrl + Shift + J** on Windows (Chrome, Brave or Edge).
-3. Copy everything in [`moodle-downloader.js`](moodle-downloader.js) and paste it into the console, then press Enter.
-   - If the browser says pasting is blocked, type `allow pasting`, press Enter, and paste again.
-4. You'll see it scan each section, add each file, then say **Done**. The zip downloads automatically.
+| Problem | Solution |
+| --- | --- |
+| `Found 0 files` | Make sure you are logged in and on the main module page, not a single section or the Dashboard. |
+| `Could not load JSZip` | Your Moodle site is blocking the zip library. Please [open an issue](https://github.com/ashgar99/moodle-module-downloader/issues) with your institution's name. |
+| Some items show `Skipped` | These are usually external links or restricted items. All other files are still included. |
 
-Repeat on each module you want to keep.
 
-## What it does and doesn't download
+## Privacy and security 🔒
 
-**Included:** files and Moodle folders from every section of the module.
+The script is short and fully readable in [`moodle-downloader.js`](moodle-downloader.js). It communicates only with your own Moodle site and loads a single open-source library, [JSZip](https://stuk.github.io/jszip/), to build the archive. No data is collected or sent elsewhere.
 
-**Not included:**
-- Panopto or other lecture recordings (they're streamed, not files). Check the recording platform for a download button.
-- Web links to other sites.
-- Your own assignment submissions and feedback. Open each assignment and download these yourself.
-- Anything you don't have permission to see.
+As a general rule, only run code in your browser console if you understand what it does or trust its source.
 
-## Troubleshooting
 
-- **"Found 0 files"**: make sure you're on the module's main page, not a single week or the Dashboard, and that you're logged in.
-- **"Could not load JSZip"**: your Moodle site is blocking the zip library from loading. Please open an issue saying which university you're at.
-- **Some files say "Skipped"**: those usually point to external links or restricted items. Everything else will still be in the zip.
-- **Yellow warnings in the console**: these come from Moodle itself and can be ignored.
+## Responsible use 📚
 
-## Is it safe?
+This tool is intended for keeping personal copies of materials you already have access to. Course materials are typically owned by lecturers and institutions, so please do not redistribute them, and check your institution's policies if you are unsure.
 
-The whole script is short and readable in [`moodle-downloader.js`](moodle-downloader.js). It only talks to your own Moodle site (using the login you already have) and loads one well-known open-source library, [JSZip](https://stuk.github.io/jszip/), to build the zip. Nothing is sent anywhere else, and your files never leave your computer.
 
-As a rule, only ever paste code into your browser console if you can see what it does or trust where it came from.
+## Acknowledgements 👏
 
-## Please use it responsibly
+Inspired by [harsilspatel/moodle-downloader](https://github.com/harsilspatel/moodle-downloader), which is now archived and no longer compatible with current browsers or Moodle 4. This project is an independent implementation and does not reuse its code.
 
-This is for keeping your own copies of materials you already have access to. Course materials usually belong to your lecturers and university, so don't share or republish them, and check your university's IT and copyright policies if you're unsure.
 
-## Credits
+## Licence 📑
 
-Inspired by [harsilspatel/moodle-downloader](https://github.com/harsilspatel/moodle-downloader), a much-loved Chrome extension that is now archived and no longer works with current browsers and Moodle 4. This project is a separate, from-scratch tool rather than a continuation of that code.
+[MIT](LICENSE)
 
-Made by [Ash Garnett](https://github.com/ashgar99).
-
-## Licence
-
-[MIT](LICENSE). Improvements and fixes for other universities' Moodle setups are very welcome: open an issue or a pull request.
+Contributions are welcome, particularly fixes for other institutions' Moodle configurations. Please open an issue or a pull request.
