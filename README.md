@@ -9,12 +9,15 @@
   <img alt="No installation required" src="https://img.shields.io/badge/install-not%20required-blue" />
 </p>
 
+<p align="center"><a href="https://ashgar99.github.io/moodle-module-downloader/"><b>Get it here</b></a></p>
+
 
 ## Features ✨
 
 - Downloads every file and folder in a module in one go, not one section at a time.
 - Packages everything into a single zip, with a numbered folder for each section so the order matches Moodle.
 - Keeps the internal structure of Moodle folders.
+- Shows a small progress panel on the page, with the option to cancel at any time.
 - Runs in your browser using your existing login. There is no extension or software to install.
 - Works with Chrome, Brave, Edge and Firefox.
 
@@ -25,11 +28,12 @@
 
 Set this up once, then use it on any module with a single click.
 
-1. Open [`bookmarklet.txt`](bookmarklet.txt) and click **Copy raw file**.
+1. Go to the [install page](https://ashgar99.github.io/moodle-module-downloader/).
 2. Show your bookmarks bar (**Cmd + Shift + B** on macOS, **Ctrl + Shift + B** on Windows).
-3. Right-click the bookmarks bar and choose **Add page** or **Add bookmark**.
-4. Name it `Download Moodle module`, paste the copied text into the **URL** field and save.
-5. Log in to Moodle, open the main page of a module and click the bookmark.
+3. Drag the **Download Moodle module** button onto your bookmarks bar.
+4. Log in to Moodle, open the main page of a module and click the bookmark.
+
+If you cannot drag the button, use **Copy the bookmark instead** on the install page, or copy the contents of [`bookmarklet.txt`](bookmarklet.txt), then add a new bookmark and paste it in as the address.
 
 ### Option 2: Browser console
 
@@ -38,7 +42,7 @@ Set this up once, then use it on any module with a single click.
 3. Paste the contents of [`moodle-downloader.js`](moodle-downloader.js) and press **Enter**.
    - If pasting is blocked, type `allow pasting`, press **Enter**, then paste again.
 
-Progress is shown in the console. When it finishes, the zip downloads automatically. Larger modules can take a minute or two, so keep the tab open until the download appears.
+A progress panel appears in the corner of the page. When it finishes, the zip downloads automatically. Larger modules can take a minute or two, so keep the tab open until the download appears.
 
 
 ## Output 📁
@@ -71,9 +75,10 @@ The following are not included:
 
 | Problem | Solution |
 | --- | --- |
-| `Found 0 files` | Make sure you are logged in and on the main module page, not a single section or the Dashboard. |
-| `Could not load JSZip` | Your Moodle site is blocking the zip library. Please [open an issue](https://github.com/ashgar99/moodle-module-downloader/issues) with your institution's name. |
-| Some items show `Skipped` | These are usually external links or restricted items. All other files are still included. |
+| `Open the main page of a Moodle module` | Make sure you are logged in and on the main module page, not a single section or the Dashboard. |
+| `No files were found in this module` | The module may only contain links, recordings or pages rather than files. |
+| `Could not load the zip library` | Your Moodle site is blocking the zip library. Please [open an issue](https://github.com/ashgar99/moodle-module-downloader/issues) with your institution's name. |
+| A file seems to be missing | External links and restricted items are skipped. All other files are still included. |
 
 
 ## Privacy and security 🔒
@@ -91,6 +96,11 @@ This tool is intended for keeping personal copies of materials you already have 
 ## Acknowledgements 👏
 
 Inspired by [harsilspatel/moodle-downloader](https://github.com/harsilspatel/moodle-downloader), which is now archived and no longer compatible with current browsers or Moodle 4. This project is an independent implementation and does not reuse its code.
+
+
+## Development 🧩
+
+The source lives in [`moodle-downloader.js`](moodle-downloader.js). After editing it, run `node build.js` to regenerate `bookmarklet.txt` and the install page in `docs/`.
 
 
 ## Licence 📑
