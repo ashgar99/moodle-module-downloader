@@ -194,7 +194,21 @@
     .tree b { color: var(--blue); font-weight: 400; }
 
     /* Install */
-    .install { text-align: center; }
+    .install { text-align: center; position: relative; }
+    .install::before {
+      content: ""; position: absolute; z-index: -1; left: 50%; width: 100vw; transform: translateX(-50%); top: -160px; bottom: -200px; pointer-events: none;
+      background:
+        radial-gradient(ellipse 120% 75% at 75% 115%, transparent 58%, rgba(150, 175, 210, 0.16) 60.5%, rgba(70, 95, 135, 0.18) 64%, transparent 76%),
+        radial-gradient(ellipse 70% 60% at 22% 30%, rgba(60, 80, 115, 0.45), transparent 72%),
+        radial-gradient(ellipse 60% 55% at 80% 55%, rgba(40, 58, 90, 0.4), transparent 72%),
+        linear-gradient(180deg, #0b1220 0%, #0d1523 55%, #070a10 100%);
+      -webkit-mask-image: linear-gradient(transparent, #000 16%, #000 80%, transparent); mask-image: linear-gradient(transparent, #000 16%, #000 80%, transparent);
+    }
+    .install::after {
+      content: ""; position: absolute; z-index: -1; left: 50%; width: 100vw; transform: translateX(-50%); top: -160px; bottom: -200px; pointer-events: none; opacity: 0.18; mix-blend-mode: overlay;
+      background-image: var(--grain); background-size: 128px 128px;
+      -webkit-mask-image: linear-gradient(transparent, #000 16%, #000 80%, transparent); mask-image: linear-gradient(transparent, #000 16%, #000 80%, transparent);
+    }
     .made { position: relative; text-align: center; }
     .made::before {
       content: ""; position: absolute; z-index: -1; left: 50%; width: 100vw; transform: translateX(-50%); top: -200px; bottom: -200px; pointer-events: none; opacity: 0.85;
