@@ -21,6 +21,5 @@ fs.writeFileSync(path.join(root, 'bookmarklet.txt'), bookmarklet + '\n');
 const template = fs.readFileSync(path.join(root, 'site', 'index.template.html'), 'utf8');
 fs.mkdirSync(path.join(root, 'docs'), { recursive: true });
 fs.writeFileSync(path.join(root, 'docs', 'index.html'), template.split('{{BOOKMARKLET}}').join(bookmarklet));
-fs.copyFileSync(path.join(root, 'site', 'logo.svg'), path.join(root, 'docs', 'logo.svg'));
 
 console.log(`Built bookmarklet.txt (${bookmarklet.length} characters) and docs/index.html`);
