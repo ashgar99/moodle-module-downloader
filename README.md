@@ -1,5 +1,6 @@
-<h3 align="center">Moodle Module Downloader</h3>
-<p align="center">Download an entire Moodle 4 module as a single zip, organised into folders by section.</p>
+<p align="center"><img src="site/logo.svg" width="72" height="72" alt=""></p>
+<h3 align="center">Modzip</h3>
+<p align="center">Save every file from a Moodle 4 module in one click, as a single zip organised into folders by section.</p>
 
 <p align="center">
   <a href="LICENSE">
@@ -9,7 +10,7 @@
   <img alt="No installation required" src="https://img.shields.io/badge/install-not%20required-blue" />
 </p>
 
-<p align="center"><a href="https://ashgar99.github.io/moodle-module-downloader/"><b>Get it here</b></a></p>
+<p align="center"><a href="https://ashgar99.github.io/moodle-module-downloader/"><b>Get Modzip</b></a></p>
 
 
 ## Features ✨
@@ -30,7 +31,7 @@ Set this up once, then use it on any module with a single click.
 
 1. Go to the [install page](https://ashgar99.github.io/moodle-module-downloader/).
 2. Show your bookmarks bar (**Cmd + Shift + B** on macOS, **Ctrl + Shift + B** on Windows).
-3. Drag the **Download Moodle module** button onto your bookmarks bar.
+3. Drag the **Modzip** button onto your bookmarks bar.
 4. Log in to Moodle, open the main page of a module and click the bookmark.
 
 If you cannot drag the button, use **Copy the bookmark instead** on the install page, or copy the contents of [`bookmarklet.txt`](bookmarklet.txt), then add a new bookmark and paste it in as the address.
@@ -94,6 +95,9 @@ This tool is intended for keeping personal copies of materials you already have 
 
 
 ## Acknowledgements 👏
+
+Modzip is an independent project and is not affiliated with or endorsed by Moodle.
+
 
 Inspired by [harsilspatel/moodle-downloader](https://github.com/harsilspatel/moodle-downloader), which is now archived and no longer compatible with current browsers or Moodle 4. This project is an independent implementation and does not reuse its code.
 

@@ -1,4 +1,4 @@
-// Moodle Module Downloader
+// Modzip: save a Moodle module in one click
 // Downloads every file in a Moodle 4 module as one zip, organised into folders by section.
 // Run it on a module's main page (course/view.php?id=...) while logged in.
 // https://github.com/ashgar99/moodle-module-downloader (MIT licence)
@@ -14,29 +14,30 @@
   const shadow = host.attachShadow({ mode: 'open' });
   shadow.innerHTML = `
     <style>
-      .panel { width: 320px; padding: 20px; border-radius: 18px; background: #131317; color: #f5f5f7;
+      .panel { width: 320px; padding: 20px; border-radius: 18px; background: #111; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 20px 50px rgba(0, 0, 0, 0.45); color: #f5f5f7;
         font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); }
+        }
       .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
       .title { font-weight: 600; font-size: 15px; }
-      .title span { color: #ff8a3d; }
+      .title { display: flex; align-items: center; gap: 8px; }
+      .dot { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #5cb4ff, #1f5eff); }
       .x { background: none; border: 0; color: #8b8b94; font-size: 22px; line-height: 1; cursor: pointer; padding: 0 2px; }
       .x:hover { color: #f5f5f7; }
       .module { color: #a1a1aa; font-size: 13px; margin-bottom: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       .status { font-weight: 500; margin-bottom: 10px; }
-      .bar { height: 6px; border-radius: 3px; background: #2a2a31; overflow: hidden; }
-      .fill { height: 100%; width: 0; background: #ff8a3d; border-radius: 3px; transition: width 0.3s ease; }
+      .bar { height: 6px; border-radius: 3px; background: #262626; overflow: hidden; }
+      .fill { height: 100%; width: 0; background: #5ea6ff; border-radius: 3px; transition: width 0.3s ease; }
       .meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: 12px; color: #8b8b94; min-height: 17px; }
       .file { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; }
-      .action { margin-top: 16px; width: 100%; padding: 10px; border: 0; border-radius: 999px; background: #24242b;
+      .action { margin-top: 16px; width: 100%; padding: 10px; border: 0; border-radius: 999px; background: #1d1d1d;
         color: #f5f5f7; font: inherit; font-weight: 500; cursor: pointer; }
-      .action:hover { background: #2f2f37; }
-      .panel.done .fill { background: #4ade80; }
-      .panel.done .action { background: #ff8a3d; color: #131317; }
+      .action:hover { background: #262626; }
+      .panel.done .fill { background: #5ea6ff; }
+      .panel.done .action { background: #5ea6ff; color: #071a3a; }
       .panel.error .fill { background: #f87171; }
     </style>
     <div class="panel" role="status" aria-live="polite">
-      <div class="head"><div class="title">Moodle <span>Downloader</span></div><button class="x" aria-label="Close">&times;</button></div>
+      <div class="head"><div class="title"><span class="dot"></span>Modzip</div><button class="x" aria-label="Close">&times;</button></div>
       <div class="module"></div>
       <div class="status">Getting ready...</div>
       <div class="bar"><div class="fill"></div></div>
@@ -168,7 +169,7 @@
         }
       } catch (e) {
         if (cancelled) throw e;
-        console.warn('Moodle Downloader skipped', url, e);
+        console.warn('Modzip skipped', url, e);
       }
       done++;
       ui.progress(15 + (done / items.size) * 75);
