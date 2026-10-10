@@ -71,9 +71,16 @@
     .hero::before {
       content: ""; position: absolute; inset: 0; z-index: -1;
       background:
-        radial-gradient(ellipse 60% 50% at 70% 18%, rgba(140, 170, 210, 0.22), transparent 70%),
-        linear-gradient(118deg, transparent 32%, rgba(120, 150, 190, 0.13) 46%, rgba(120, 150, 190, 0.05) 58%, transparent 70%),
-        linear-gradient(180deg, #0d1622 0%, #05080d 55%, #000 100%);
+        linear-gradient(180deg, transparent 70%, #000 100%),
+        linear-gradient(211deg, transparent 54.6%, rgba(205, 225, 245, 0.09) 55%, transparent 55.6%),
+        linear-gradient(211deg, rgba(185, 210, 235, 0.06) 30%, rgba(185, 210, 235, 0.1) 54.9%, rgba(0, 0, 0, 0.5) 55.2%, rgba(0, 0, 0, 0.3) 68%, rgba(0, 0, 0, 0.1) 85%),
+        radial-gradient(ellipse 65% 75% at 80% 0%, rgba(165, 195, 228, 0.45), transparent 72%),
+        radial-gradient(ellipse 50% 45% at 18% 30%, rgba(110, 140, 175, 0.16), transparent 70%),
+        linear-gradient(180deg, #172738 0%, #0d1520 55%, #05070a 100%);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.09; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
     .wordmark { display: inline-flex; align-items: center; gap: 32px; margin-top: 96px; }
     .wordmark img { width: clamp(80px, 9vw, 128px); height: auto; }
@@ -97,12 +104,12 @@
 
     /* Wall of module pages */
     .wall { position: relative; overflow: hidden; }
-    .wall-row { display: flex; gap: 32px; width: max-content; margin-bottom: 32px; animation: slide 60s linear infinite; }
-    .wall-row.reverse { animation-direction: reverse; margin-left: -25vw; margin-bottom: 0; }
-    .wall:hover .wall-row { animation-play-state: paused; }
+    .wall-row { display: flex; gap: 32px; width: 100%; margin-bottom: 32px; animation: wall-top 60s linear infinite; }
+    .wall-row.reverse { margin-left: 30%; margin-bottom: 0; animation-name: wall-bottom; }
     .mp:hover { filter: none; opacity: 1; }
-    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .mp { width: min(50vw, 720px); aspect-ratio: 2 / 1; flex: none; background: #fafafa; color: #262626; overflow: hidden; filter: grayscale(1); opacity: 0.5; transition: filter 0.3s, opacity 0.3s; font-size: 11px; line-height: 1.4; display: flex; flex-direction: column; }
+    @keyframes wall-top { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(calc(-150% - 128px)); } }
+    @keyframes wall-bottom { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(calc(-200% - 160px)); } }
+    .mp { position: relative; width: 50vw; aspect-ratio: 2 / 1; flex: none; background: #fafafa; color: #262626; overflow: hidden; filter: grayscale(1); opacity: 0.5; transition: filter 0.3s, opacity 0.3s; font-size: 11px; line-height: 1.4; display: flex; flex-direction: column; }
     .mp-top { height: 40px; flex: none; display: flex; align-items: center; gap: 18px; padding: 0 16px; background: #fff; box-shadow: 0 1px 0 #e5e5e5; }
     .mp-top b { font-size: 12.5px; letter-spacing: -0.01em; }
     .mp-top i { font-style: normal; color: #525252; }
@@ -119,8 +126,22 @@
     .mp-act { display: flex; align-items: center; gap: 8px; padding: 5px 8px; margin-bottom: 4px; border-radius: 6px; background: #fff; box-shadow: 0 0 0 1px #ececec; }
     .mp-act s { text-decoration: none; width: 18px; height: 18px; border-radius: 4px; flex: none; display: grid; place-items: center; font-size: 7px; font-weight: 700; color: #fff; }
     .t-pdf { background: #dc2626; } .t-doc { background: #2563eb; } .t-ppt { background: #ea580c; } .t-fol { background: #ca8a04; } .t-url { background: #7c3aed; } .t-vid { background: #059669; }
-    .wall-fade { position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(90deg, #000 0%, transparent 12%, transparent 88%, #000 100%); }
+    .mp-scroll, .mp-z, .mp-zb i, .mp-zs span { animation-duration: 14s; animation-iteration-count: infinite; animation-delay: var(--d, 0s); animation-timing-function: ease-in-out; }
+    .mp-scroll { animation-name: mp-scroll; }
+    .mp-z { position: absolute; right: 16px; bottom: 16px; width: 220px; padding: 12px 14px; border-radius: 12px; background: #111; color: #fff; font-size: 11px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); animation-name: mp-panel; }
+    .mp-zt { display: flex; align-items: center; gap: 6px; font-weight: 600; margin-bottom: 6px; }
+    .mp-zd { width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, #5cb4ff, #1f5eff); }
+    .mp-zs { display: grid; margin-bottom: 7px; color: rgba(255, 255, 255, 0.75); }
+    .mp-zs span { grid-area: 1 / 1; }
+    .mp-zs .a { animation-name: mp-a; }
+    .mp-zs .b { animation-name: mp-b; opacity: 0; }
+    .mp-zb { height: 4px; border-radius: 2px; background: #2a2a2a; overflow: hidden; }
+    .mp-zb i { display: block; height: 100%; width: 4%; border-radius: 2px; background: var(--blue); animation-name: mp-fill; }
+    @keyframes mp-scroll { 0%, 10% { transform: translateY(0); } 34%, 86% { transform: translateY(-96px); } 100% { transform: translateY(0); } }
+    @keyframes mp-panel { 0%, 36% { opacity: 0; transform: translateY(12px); } 42%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: translateY(12px); } }
+    @keyframes mp-fill { 0%, 42% { width: 4%; } 76%, 100% { width: 100%; } }
+    @keyframes mp-a { 0%, 77% { opacity: 1; } 79%, 100% { opacity: 0; } }
+    @keyframes mp-b { 0%, 77% { opacity: 0; } 79%, 100% { opacity: 1; } }
 
     /* Sections */
     section { padding: 256px 0 0; }
@@ -193,6 +214,10 @@
       nav .hide-sm { display: none; }
       .wordmark { gap: 16px; margin-top: 72px; }
       .mp { width: 85vw; }
+      .wall-row { animation-name: wall-top-m; }
+      .wall-row.reverse { animation-name: wall-bottom-m; }
+      @keyframes wall-top-m { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(calc(-325% - 128px)); } }
+      @keyframes wall-bottom-m { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(calc(-355% - 128px)); } }
       .mp-index { display: none; }
       section { padding-top: 128px; }
       .facts { grid-template-columns: 1fr; }
@@ -204,7 +229,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .wall-row { animation: none; }
+      .wall-row, .mp-scroll, .mp-z, .mp-zb i, .mp-zs span { animation: none; }
     }
   </style>
 </head>
@@ -239,7 +264,6 @@
   <div class="wall" id="wall" aria-hidden="true">
     <div class="wall-row" id="row1"></div>
     <div class="wall-row reverse" id="row2"></div>
-    <div class="wall-fade"></div>
   </div>
 
   <main class="container">
@@ -350,16 +374,19 @@
           return '<div class="mp-sec"><h4>' + s + '</h4>' + rows + '</div>';
         }).join('');
         var index = p[3].map(function (s, i) { return '<div' + (i === 1 ? ' class="on"' : '') + '>' + s + '</div>'; }).join('');
-        return '<div class="mp"><div class="mp-top"><b>' + p[0] + '</b><i>Home</i><i>Dashboard</i><i>My modules</i><span class="av"></span></div>' +
+        var files = 12 + k * 5;
+        var extra = '<div class="mp-sec"><h4>Assessment</h4><div class="mp-act"><s class="t-doc">DOC</s>Assessment brief</div><div class="mp-act"><s class="t-pdf">PDF</s>Marking criteria</div></div>';
+        var panel = '<div class="mp-z"><div class="mp-zt"><span class="mp-zd"></span>Modzip</div><div class="mp-zs"><span class="a">Downloading files</span><span class="b">Done. ' + files + ' files saved.</span></div><div class="mp-zb"><i></i></div></div>';
+        return '<div class="mp" style="--d: -' + (k * 2.8 + (p[1].length % 3)) + 's"><div class="mp-top"><b>' + p[0] + '</b><i>Home</i><i>Dashboard</i><i>My modules</i><span class="av"></span></div>' +
           '<div class="mp-body"><div class="mp-index">' + index + '<div>Assessment</div><div>Resources</div></div>' +
-          '<div class="mp-main"><div class="mp-crumb">My modules / ' + p[1] + '</div><div class="mp-title">' + p[1] + ' ' + p[2] + '</div>' + secs + '</div></div></div>';
+          '<div class="mp-main"><div class="mp-scroll"><div class="mp-crumb">My modules / ' + p[1] + '</div><div class="mp-title">' + p[1] + ' ' + p[2] + '</div>' + secs + extra + '</div></div></div>' + panel + '</div>';
       }
       function fill(id, order) {
         var html = order.map(function (i, k) { return card(pages[i], k); }).join('');
-        document.getElementById(id).innerHTML = html + html;
+        document.getElementById(id).innerHTML = html;
       }
-      fill('row1', [0, 1, 2, 3, 4, 5]);
-      fill('row2', [3, 5, 0, 4, 2, 1]);
+      fill('row1', [0, 1, 2, 3, 4]);
+      fill('row2', [5, 3, 0, 4, 2]);
 
       // Bookmarklet button
       var link = document.getElementById('bookmarklet');
