@@ -20,7 +20,7 @@
 - Keeps the internal structure of Moodle folders.
 - Shows a small progress panel on the page, with the option to cancel at any time.
 - Runs in your browser using your existing login. There is no extension or software to install.
-- Works with Chrome, Brave, Edge and Firefox.
+- Works in all major desktop browsers: Chrome, Edge, Brave, Arc, Opera, Firefox and Safari.
 
 
 ## Usage 🛠
@@ -30,20 +30,34 @@
 Set this up once, then use it on any module with a single click.
 
 1. Go to the [install page](https://ashgar99.github.io/moodle-module-downloader/).
-2. Show your bookmarks bar (**Cmd + Shift + B** on macOS, **Ctrl + Shift + B** on Windows).
+2. Show your bookmarks bar (**Cmd + Shift + B** on macOS, **Ctrl + Shift + B** on Windows). In Safari this is called the Favourites bar.
 3. Drag the **Modzip** button onto your bookmarks bar.
 4. Log in to Moodle, open the main page of a module and click the bookmark.
 
 If you cannot drag the button, use **Copy the bookmark instead** on the install page, or copy the contents of [`bookmarklet.txt`](bookmarklet.txt), then add a new bookmark and paste it in as the address.
 
+The bookmark shows a plain globe icon. Browsers do not display icons for bookmarklets, so this is expected.
+
 ### Option 2: Browser console
 
 1. Log in to Moodle and open the main page of a module (for example `https://moodle.example.ac.uk/course/view.php?id=12345`).
-2. Open the developer console (**Cmd + Option + J** on macOS, **Ctrl + Shift + J** on Windows).
+2. Open the developer console: **Cmd + Option + J** on macOS or **Ctrl + Shift + J** on Windows in Chromium browsers, **Cmd + Option + K** or **Ctrl + Shift + K** in Firefox, and **Cmd + Option + C** in Safari (after turning on **Show features for web developers** in Safari's Advanced settings).
 3. Paste the contents of [`moodle-downloader.js`](moodle-downloader.js) and press **Enter**.
    - If pasting is blocked, type `allow pasting`, press **Enter**, then paste again.
 
 A progress panel appears in the corner of the page. When it finishes, the zip downloads automatically. Larger modules can take a minute or two, so keep the tab open until the download appears.
+
+
+## Browser support 🌐
+
+| Browser | Supported | Notes |
+| --- | --- | --- |
+| Chrome, Edge, Brave, Arc, Opera, Vivaldi | Yes | Fully tested. |
+| Firefox | Yes | Drag the button to the bookmarks toolbar. |
+| Safari | Yes | Show the Favourites bar first, and allow downloads if Safari asks. |
+| Mobile browsers | Not recommended | Bookmarklets are difficult to add and run on phones and tablets. |
+
+If something does not work in your browser, please [open an issue](https://github.com/ashgar99/moodle-module-downloader/issues).
 
 
 ## Output 📁

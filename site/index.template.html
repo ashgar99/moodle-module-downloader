@@ -39,21 +39,32 @@
     nav {
       pointer-events: auto;
       display: flex; align-items: center; gap: 22px;
-      height: 60px; padding: 0 22px 0 12px;
+      height: 76px; padding: 0 14px;
       border-radius: 999px;
-      background: rgba(22, 22, 22, 0.7);
-      box-shadow: inset 0 0 0 1px var(--line);
+      background: rgba(27, 27, 27, 0.88);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14), 0 12px 32px rgba(0, 0, 0, 0.45);
       -webkit-backdrop-filter: blur(20px) saturate(2); backdrop-filter: blur(20px) saturate(2);
-      font-size: 15px;
+      font-size: 17px;
     }
-    nav .mark { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-    nav .mark img { width: 36px; height: 36px; }
-    nav .ver { font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--softer); margin-left: -4px; align-self: flex-start; margin-top: 12px; }
-    nav a.link { color: var(--soft); transition: color 0.2s; }
+    nav .mark { display: flex; transition: opacity 0.2s; }
+    nav .mark:hover { opacity: 0.75; }
+    nav .mark img { width: 48px; height: 48px; }
+    nav .menu { display: flex; flex-direction: column; justify-content: center; }
+    nav .ver { font: 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: #8a8a8a; margin-bottom: 4px; }
+    nav .links { display: flex; align-items: center; gap: 24px; }
+    nav a.link { color: #f2f2f2; transition: color 0.2s; }
     nav a.link:hover { color: var(--blue); }
+    nav .stars { display: inline-flex; align-items: center; gap: 8px; font: 500 15px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    nav .stars svg { width: 24px; height: 24px; }
+    nav .get {
+      display: inline-flex; align-items: center; height: 48px; padding: 0 20px; border-radius: 999px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+      font-size: 15px; color: #f2f2f2; transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    nav .get:hover { background: rgba(94, 166, 255, 0.12); color: var(--blue); box-shadow: inset 0 0 0 1px rgba(94, 166, 255, 0.45); }
 
     /* Hero */
-    .hero { position: relative; text-align: center; padding: 120px 0 90px; margin-top: -92px; overflow: hidden; }
+    .hero { position: relative; text-align: center; padding: 120px 0 90px; margin-top: -108px; overflow: hidden; }
     .hero::before {
       content: ""; position: absolute; inset: 0; z-index: -1;
       background:
@@ -171,8 +182,10 @@
       .facts { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
-      nav { gap: 16px; padding-right: 18px; }
-      nav .ver, nav .hide-sm { display: none; }
+      nav { gap: 14px; height: 68px; padding: 0 22px 0 10px; font-size: 16px; }
+      nav .mark img { width: 44px; height: 44px; }
+      nav .links { gap: 18px; }
+      nav .hide-sm { display: none; }
       .wordmark { gap: 16px; margin-top: 110px; }
       .mp { width: 460px; height: 300px; }
       .mp-index { display: none; }
@@ -193,11 +206,19 @@
 <body>
   <div class="nav-wrap">
     <nav>
-      <a class="mark" href="./"><img src="logo.svg" alt="">Modzip</a>
-      <span class="ver">v1.0</span>
-      <a class="link hide-sm" href="#why">Why</a>
-      <a class="link" href="#how">How it works</a>
-      <a class="link" href="https://github.com/ashgar99/moodle-module-downloader">GitHub</a>
+      <a class="mark" href="./" aria-label="Modzip home"><img src="logo.svg" alt=""></a>
+      <div class="menu">
+        <span class="ver">v1.0</span>
+        <div class="links">
+          <a class="link hide-sm" href="#why">Why</a>
+          <a class="link" href="#how">How it works</a>
+          <a class="link stars" href="https://github.com/ashgar99/moodle-module-downloader" aria-label="Modzip on GitHub">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span id="stars">Star</span>
+          </a>
+        </div>
+      </div>
+      <a class="get hide-sm" href="#get">Get Modzip</a>
     </nav>
   </div>
 
@@ -264,10 +285,10 @@
 
     <section id="get" class="install">
       <h2>Get Modzip</h2>
-      <p class="sub">Drag this button onto your bookmarks bar.</p>
+      <p class="sub">Drag this button onto your bookmarks bar. It will show as Modzip with a plain globe icon, as browsers do not display icons for bookmarks like this.</p>
       <a class="drag" id="bookmarklet" href="{{BOOKMARKLET}}" draggable="true"><img src="logo.svg" alt="">Modzip</a>
       <p class="hint" id="hint">Can't see your bookmarks bar? Show it with the keys below.</p>
-      <p class="keys"><kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on a Mac &nbsp;&middot;&nbsp; <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on Windows</p>
+      <p class="keys"><kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on a Mac &nbsp;&middot;&nbsp; <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on Windows &nbsp;&middot;&nbsp; In Safari, allow downloads if asked</p>
       <button class="copy" id="copy" type="button">Can't drag it? Copy the bookmark instead</button>
 
       <div class="facts">
@@ -284,7 +305,7 @@
         <div class="fact">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
           <h3>Any Moodle 4 site</h3>
-          <p>Works at any university or college, in Chrome, Brave, Edge and Firefox.</p>
+          <p>Works at any university or college, in Chrome, Edge, Brave, Firefox and Safari on a computer.</p>
         </div>
         <div class="fact">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-9.3-9A5.2 5.2 0 0 1 12 6.6 5.2 5.2 0 0 1 21.3 12C19 16.6 12 21 12 21z"/></svg>
@@ -357,6 +378,14 @@
           navigator.clipboard.writeText(code).then(done, function () { fallback(code); done(); });
         } else { fallback(code); done(); }
       });
+      // Live GitHub star count, falling back to "Star" if unavailable
+      fetch('https://api.github.com/repos/ashgar99/moodle-module-downloader')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (d && d.stargazers_count > 0) document.getElementById('stars').textContent = d.stargazers_count.toLocaleString('en-GB');
+        })
+        .catch(function () {});
+
       function fallback(text) {
         var area = document.createElement('textarea');
         area.value = text; area.style.position = 'fixed'; area.style.opacity = '0';

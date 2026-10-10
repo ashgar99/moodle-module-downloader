@@ -39,21 +39,32 @@
     nav {
       pointer-events: auto;
       display: flex; align-items: center; gap: 22px;
-      height: 60px; padding: 0 22px 0 12px;
+      height: 76px; padding: 0 14px;
       border-radius: 999px;
-      background: rgba(22, 22, 22, 0.7);
-      box-shadow: inset 0 0 0 1px var(--line);
+      background: rgba(27, 27, 27, 0.88);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14), 0 12px 32px rgba(0, 0, 0, 0.45);
       -webkit-backdrop-filter: blur(20px) saturate(2); backdrop-filter: blur(20px) saturate(2);
-      font-size: 15px;
+      font-size: 17px;
     }
-    nav .mark { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-    nav .mark img { width: 36px; height: 36px; }
-    nav .ver { font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--softer); margin-left: -4px; align-self: flex-start; margin-top: 12px; }
-    nav a.link { color: var(--soft); transition: color 0.2s; }
+    nav .mark { display: flex; transition: opacity 0.2s; }
+    nav .mark:hover { opacity: 0.75; }
+    nav .mark img { width: 48px; height: 48px; }
+    nav .menu { display: flex; flex-direction: column; justify-content: center; }
+    nav .ver { font: 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: #8a8a8a; margin-bottom: 4px; }
+    nav .links { display: flex; align-items: center; gap: 24px; }
+    nav a.link { color: #f2f2f2; transition: color 0.2s; }
     nav a.link:hover { color: var(--blue); }
+    nav .stars { display: inline-flex; align-items: center; gap: 8px; font: 500 15px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    nav .stars svg { width: 24px; height: 24px; }
+    nav .get {
+      display: inline-flex; align-items: center; height: 48px; padding: 0 20px; border-radius: 999px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+      font-size: 15px; color: #f2f2f2; transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    nav .get:hover { background: rgba(94, 166, 255, 0.12); color: var(--blue); box-shadow: inset 0 0 0 1px rgba(94, 166, 255, 0.45); }
 
     /* Hero */
-    .hero { position: relative; text-align: center; padding: 120px 0 90px; margin-top: -92px; overflow: hidden; }
+    .hero { position: relative; text-align: center; padding: 120px 0 90px; margin-top: -108px; overflow: hidden; }
     .hero::before {
       content: ""; position: absolute; inset: 0; z-index: -1;
       background:
@@ -171,8 +182,10 @@
       .facts { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
-      nav { gap: 16px; padding-right: 18px; }
-      nav .ver, nav .hide-sm { display: none; }
+      nav { gap: 14px; height: 68px; padding: 0 22px 0 10px; font-size: 16px; }
+      nav .mark img { width: 44px; height: 44px; }
+      nav .links { gap: 18px; }
+      nav .hide-sm { display: none; }
       .wordmark { gap: 16px; margin-top: 110px; }
       .mp { width: 460px; height: 300px; }
       .mp-index { display: none; }
@@ -193,11 +206,19 @@
 <body>
   <div class="nav-wrap">
     <nav>
-      <a class="mark" href="./"><img src="logo.svg" alt="">Modzip</a>
-      <span class="ver">v1.0</span>
-      <a class="link hide-sm" href="#why">Why</a>
-      <a class="link" href="#how">How it works</a>
-      <a class="link" href="https://github.com/ashgar99/moodle-module-downloader">GitHub</a>
+      <a class="mark" href="./" aria-label="Modzip home"><img src="logo.svg" alt=""></a>
+      <div class="menu">
+        <span class="ver">v1.0</span>
+        <div class="links">
+          <a class="link hide-sm" href="#why">Why</a>
+          <a class="link" href="#how">How it works</a>
+          <a class="link stars" href="https://github.com/ashgar99/moodle-module-downloader" aria-label="Modzip on GitHub">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span id="stars">Star</span>
+          </a>
+        </div>
+      </div>
+      <a class="get hide-sm" href="#get">Get Modzip</a>
     </nav>
   </div>
 
@@ -264,10 +285,10 @@
 
     <section id="get" class="install">
       <h2>Get Modzip</h2>
-      <p class="sub">Drag this button onto your bookmarks bar.</p>
+      <p class="sub">Drag this button onto your bookmarks bar. It will show as Modzip with a plain globe icon, as browsers do not display icons for bookmarks like this.</p>
       <a class="drag" id="bookmarklet" href="javascript:(async%20()%20%3D%3E%20%7B%0Aif%20(document.getElementById('mmd-root'))%20return%3B%0Aconst%20host%20%3D%20document.createElement('div')%3B%0Ahost.id%20%3D%20'mmd-root'%3B%0Ahost.style.cssText%20%3D%20'position%3Afixed%3Bright%3A24px%3Bbottom%3A24px%3Bz-index%3A2147483647%3B'%3B%0Adocument.body.appendChild(host)%3B%0Aconst%20shadow%20%3D%20host.attachShadow(%7B%20mode%3A%20'open'%20%7D)%3B%0Ashadow.innerHTML%20%3D%20%60%0A%3Cstyle%3E%0A.panel%20%7B%20width%3A%20320px%3B%20padding%3A%2020px%3B%20border-radius%3A%2018px%3B%20background%3A%20%23111%3B%20box-shadow%3A%20inset%200%200%200%201px%20rgba(255%2C255%2C255%2C0.08)%2C%200%2020px%2050px%20rgba(0%2C%200%2C%200%2C%200.45)%3B%20color%3A%20%23f5f5f7%3B%0Afont%3A%2014px%2F1.45%20-apple-system%2C%20BlinkMacSystemFont%2C%20%22Segoe%20UI%22%2C%20Roboto%2C%20sans-serif%3B%0A%7D%0A.head%20%7B%20display%3A%20flex%3B%20justify-content%3A%20space-between%3B%20align-items%3A%20center%3B%20margin-bottom%3A%2014px%3B%20%7D%0A.title%20%7B%20font-weight%3A%20600%3B%20font-size%3A%2015px%3B%20%7D%0A.title%20%7B%20display%3A%20flex%3B%20align-items%3A%20center%3B%20gap%3A%208px%3B%20%7D%0A.dot%20%7B%20width%3A%2018px%3B%20height%3A%2018px%3B%20border-radius%3A%2050%25%3B%20background%3A%20linear-gradient(135deg%2C%20%235cb4ff%2C%20%231f5eff)%3B%20%7D%0A.x%20%7B%20background%3A%20none%3B%20border%3A%200%3B%20color%3A%20%238b8b94%3B%20font-size%3A%2022px%3B%20line-height%3A%201%3B%20cursor%3A%20pointer%3B%20padding%3A%200%202px%3B%20%7D%0A.x%3Ahover%20%7B%20color%3A%20%23f5f5f7%3B%20%7D%0A.module%20%7B%20color%3A%20%23a1a1aa%3B%20font-size%3A%2013px%3B%20margin-bottom%3A%2014px%3B%20overflow%3A%20hidden%3B%20text-overflow%3A%20ellipsis%3B%20white-space%3A%20nowrap%3B%20%7D%0A.status%20%7B%20font-weight%3A%20500%3B%20margin-bottom%3A%2010px%3B%20%7D%0A.bar%20%7B%20height%3A%206px%3B%20border-radius%3A%203px%3B%20background%3A%20%23262626%3B%20overflow%3A%20hidden%3B%20%7D%0A.fill%20%7B%20height%3A%20100%25%3B%20width%3A%200%3B%20background%3A%20%235ea6ff%3B%20border-radius%3A%203px%3B%20transition%3A%20width%200.3s%20ease%3B%20%7D%0A.meta%20%7B%20display%3A%20flex%3B%20justify-content%3A%20space-between%3B%20gap%3A%2012px%3B%20margin-top%3A%2010px%3B%20font-size%3A%2012px%3B%20color%3A%20%238b8b94%3B%20min-height%3A%2017px%3B%20%7D%0A.file%20%7B%20overflow%3A%20hidden%3B%20text-overflow%3A%20ellipsis%3B%20white-space%3A%20nowrap%3B%20text-align%3A%20right%3B%20%7D%0A.action%20%7B%20margin-top%3A%2016px%3B%20width%3A%20100%25%3B%20padding%3A%2010px%3B%20border%3A%200%3B%20border-radius%3A%20999px%3B%20background%3A%20%231d1d1d%3B%0Acolor%3A%20%23f5f5f7%3B%20font%3A%20inherit%3B%20font-weight%3A%20500%3B%20cursor%3A%20pointer%3B%20%7D%0A.action%3Ahover%20%7B%20background%3A%20%23262626%3B%20%7D%0A.panel.done%20.fill%20%7B%20background%3A%20%235ea6ff%3B%20%7D%0A.panel.done%20.action%20%7B%20background%3A%20%235ea6ff%3B%20color%3A%20%23071a3a%3B%20%7D%0A.panel.error%20.fill%20%7B%20background%3A%20%23f87171%3B%20%7D%0A%3C%2Fstyle%3E%0A%3Cdiv%20class%3D%22panel%22%20role%3D%22status%22%20aria-live%3D%22polite%22%3E%0A%3Cdiv%20class%3D%22head%22%3E%3Cdiv%20class%3D%22title%22%3E%3Cspan%20class%3D%22dot%22%3E%3C%2Fspan%3EModzip%3C%2Fdiv%3E%3Cbutton%20class%3D%22x%22%20aria-label%3D%22Close%22%3E%26times%3B%3C%2Fbutton%3E%3C%2Fdiv%3E%0A%3Cdiv%20class%3D%22module%22%3E%3C%2Fdiv%3E%0A%3Cdiv%20class%3D%22status%22%3EGetting%20ready...%3C%2Fdiv%3E%0A%3Cdiv%20class%3D%22bar%22%3E%3Cdiv%20class%3D%22fill%22%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%0A%3Cdiv%20class%3D%22meta%22%3E%3Cspan%20class%3D%22count%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22file%22%3E%3C%2Fspan%3E%3C%2Fdiv%3E%0A%3Cbutton%20class%3D%22action%22%3ECancel%3C%2Fbutton%3E%0A%3C%2Fdiv%3E%60%3B%0Aconst%20%24%20%3D%20s%20%3D%3E%20shadow.querySelector(s)%3B%0Aconst%20ui%20%3D%20%7B%0Astatus%3A%20t%20%3D%3E%20%7B%20%24('.status').textContent%20%3D%20t%3B%20%7D%2C%0Aprogress%3A%20p%20%3D%3E%20%7B%20%24('.fill').style.width%20%3D%20Math.max(0%2C%20Math.min(100%2C%20p))%20%2B%20'%25'%3B%20%7D%2C%0Acount%3A%20t%20%3D%3E%20%7B%20%24('.count').textContent%20%3D%20t%3B%20%7D%2C%0Afile%3A%20t%20%3D%3E%20%7B%20%24('.file').textContent%20%3D%20t%3B%20%7D%0A%7D%3B%0Alet%20cancelled%20%3D%20false%3B%0Alet%20finished%20%3D%20false%3B%0Aconst%20close%20%3D%20()%20%3D%3E%20host.remove()%3B%0Aconst%20finish%20%3D%20(message%2C%20state)%20%3D%3E%20%7B%0Afinished%20%3D%20true%3B%0Aui.status(message)%3B%0Aui.file('')%3B%0Aif%20(state)%20%24('.panel').classList.add(state)%3B%0A%24('.action').textContent%20%3D%20'Close'%3B%0A%7D%3B%0A%24('.x').onclick%20%3D%20()%20%3D%3E%20%7B%20cancelled%20%3D%20true%3B%20close()%3B%20%7D%3B%0A%24('.action').onclick%20%3D%20()%20%3D%3E%20%7B%0Aif%20(finished)%20return%20close()%3B%0Acancelled%20%3D%20true%3B%0Aui.status('Cancelling...')%3B%0A%7D%3B%0Aconst%20check%20%3D%20()%20%3D%3E%20%7B%20if%20(cancelled)%20throw%20new%20Error('cancelled')%3B%20%7D%3B%0Aconst%20clean%20%3D%20s%20%3D%3E%20(s%20%7C%7C%20'').replace(%2F%5Cs%2B%2Fg%2C%20'%20').trim().replace(%2F%5B%5C%5C%2F%3A*%3F%22%3C%3E%7C%5D%2Fg%2C%20'-').slice(0%2C%2080)%20%7C%7C%20'Untitled'%3B%0Aconst%20getDoc%20%3D%20async%20url%20%3D%3E%0Anew%20DOMParser().parseFromString(await%20(await%20fetch(url%2C%20%7B%20credentials%3A%20'include'%20%7D)).text()%2C%20'text%2Fhtml')%3B%0Aconst%20main%20%3D%20doc%20%3D%3E%20doc.querySelector('%23region-main')%20%7C%7C%20doc%3B%0Atry%20%7B%0Aif%20(!window.M%20%7C%7C%20!%2F%5C%2Fcourse%5C%2Fview%5C.php%2F.test(location.pathname))%20%7B%0Aui.progress(100)%3B%0Areturn%20finish('Open%20the%20main%20page%20of%20a%20Moodle%20module%2C%20then%20click%20the%20bookmark%20again.'%2C%20'error')%3B%0A%7D%0Aconst%20moduleName%20%3D%20clean(document.querySelector('h1')%3F.innerText%20%7C%7C%20document.title)%3B%0A%24('.module').textContent%20%3D%20moduleName%3B%0Aif%20(!window.JSZip)%20%7B%0Aui.status('Loading...')%3B%0Aconst%20savedDefine%20%3D%20window.define%3B%0Awindow.define%20%3D%20undefined%3B%0Aawait%20new%20Promise((ok%2C%20fail)%20%3D%3E%20%7B%0Aconst%20s%20%3D%20document.createElement('script')%3B%0As.src%20%3D%20'https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fjszip%2F3.10.1%2Fjszip.min.js'%3B%0As.onload%20%3D%20()%20%3D%3E%20%7B%20window.define%20%3D%20savedDefine%3B%20ok()%3B%20%7D%3B%0As.onerror%20%3D%20()%20%3D%3E%20%7B%20window.define%20%3D%20savedDefine%3B%20fail(new%20Error('Could%20not%20load%20the%20zip%20library.'))%3B%20%7D%3B%0Adocument.head.appendChild(s)%3B%0A%7D)%3B%0A%7D%0Aconst%20zip%20%3D%20new%20JSZip()%3B%0Aconst%20sections%20%3D%20new%20Map()%3B%0Adocument.querySelectorAll('a%5Bhref*%3D%22%2Fcourse%2Fsection.php%3Fid%3D%22%5D').forEach(a%20%3D%3E%20%7B%0Aconst%20url%20%3D%20a.href.split('%23')%5B0%5D%3B%0Aconst%20name%20%3D%20clean(a.innerText.split('%5Cn')%5B0%5D)%3B%0Aif%20(!sections.has(url)%20%26%26%20name%20!%3D%3D%20'Untitled')%20sections.set(url%2C%20name)%3B%0A%7D)%3B%0Aconst%20items%20%3D%20new%20Map()%3B%0Aconst%20collect%20%3D%20(root%2C%20section)%20%3D%3E%20%7B%0Aroot.querySelectorAll('a%5Bhref*%3D%22%2Fmod%2Fresource%2Fview.php%3Fid%3D%22%5D%2C%20a%5Bhref*%3D%22%2Fmod%2Ffolder%2Fview.php%3Fid%3D%22%5D').forEach(a%20%3D%3E%20%7B%0Aconst%20url%20%3D%20a.href.split('%23')%5B0%5D%3B%0Aif%20(!items.has(url))%20items.set(url%2C%20%7B%0Atype%3A%20url.includes('%2Fmod%2Ffolder%2F')%20%3F%20'folder'%20%3A%20'file'%2C%0Asection%2C%0Atitle%3A%20clean(a.innerText.split('%5Cn')%5B0%5D)%0A%7D)%3B%0A%7D)%3B%0A%7D%3B%0Alet%20i%20%3D%200%3B%0Afor%20(const%20%5Burl%2C%20name%5D%20of%20sections)%20%7B%0Acheck()%3B%0Ai%2B%2B%3B%0Aui.status('Scanning%20sections')%3B%0Aui.count(%60%24%7Bi%7D%20of%20%24%7Bsections.size%7D%60)%3B%0Aui.file(name)%3B%0Aui.progress((i%20%2F%20Math.max(sections.size%2C%201))%20*%2015)%3B%0Acollect(main(await%20getDoc(url))%2C%20%60%24%7BString(i).padStart(2%2C%20'0')%7D%20%24%7Bname%7D%60)%3B%0A%7D%0Acollect(document%2C%20'00%20General')%3B%0Aif%20(!items.size)%20%7B%0Aui.progress(100)%3B%0Areturn%20finish('No%20files%20were%20found%20in%20this%20module.'%2C%20'error')%3B%0A%7D%0Aconst%20added%20%3D%20new%20Set()%3B%0Aconst%20addFile%20%3D%20async%20(url%2C%20path)%20%3D%3E%20%7B%0Acheck()%3B%0Aconst%20res%20%3D%20await%20fetch(url%2C%20%7B%20credentials%3A%20'include'%20%7D)%3B%0Aif%20((res.headers.get('content-type')%20%7C%7C%20'').includes('text%2Fhtml'))%20return%3B%0Aconst%20name%20%3D%20decodeURIComponent(new%20URL(res.url).pathname.split('%2F').pop())%20%7C%7C%20'file'%3B%0Aui.file(name)%3B%0Alet%20full%20%3D%20%60%24%7Bpath%7D%2F%24%7Bname%7D%60%3B%0Alet%20n%20%3D%201%3B%0Awhile%20(added.has(full))%20full%20%3D%20%60%24%7Bpath%7D%2F%24%7Bn%2B%2B%7D_%24%7Bname%7D%60%3B%0Aadded.add(full)%3B%0Azip.file(full%2C%20await%20res.blob())%3B%0Aui.count(%60%24%7Badded.size%7D%20file%24%7Badded.size%20%3D%3D%3D%201%20%3F%20''%20%3A%20's'%7D%60)%3B%0A%7D%3B%0Alet%20done%20%3D%200%3B%0Aui.status('Downloading%20files')%3B%0Afor%20(const%20%5Burl%2C%20it%5D%20of%20items)%20%7B%0Acheck()%3B%0Atry%20%7B%0Aif%20(it.type%20%3D%3D%3D%20'file')%20%7B%0Aawait%20addFile(url%20%2B%20'%26redirect%3D1'%2C%20it.section)%3B%0A%7D%20else%20%7B%0Aconst%20doc%20%3D%20await%20getDoc(url)%3B%0Aconst%20links%20%3D%20%5B...new%20Set(%5B...main(doc).querySelectorAll('a%5Bhref*%3D%22%2Fpluginfile.php%2F%22%5D')%5D.map(a%20%3D%3E%20a.href))%5D%3B%0Afor%20(const%20f%20of%20links)%20%7B%0Aconst%20m%20%3D%20decodeURIComponent(new%20URL(f).pathname).match(%2F%5C%2Fmod_folder%5C%2Fcontent%5C%2F%5Cd%2B%5C%2F(.*)%5C%2F%5B%5E%2F%5D%2B%24%2F)%3B%0Aawait%20addFile(f%2C%20%60%24%7Bit.section%7D%2F%24%7Bit.title%7D%24%7Bm%20%3F%20'%2F'%20%2B%20m%5B1%5D%20%3A%20''%7D%60)%3B%0A%7D%0A%7D%0A%7D%20catch%20(e)%20%7B%0Aif%20(cancelled)%20throw%20e%3B%0Aconsole.warn('Modzip%20skipped'%2C%20url%2C%20e)%3B%0A%7D%0Adone%2B%2B%3B%0Aui.progress(15%20%2B%20(done%20%2F%20items.size)%20*%2075)%3B%0A%7D%0Aif%20(!added.size)%20%7B%0Aui.progress(100)%3B%0Areturn%20finish('No%20downloadable%20files%20were%20found%20in%20this%20module.'%2C%20'error')%3B%0A%7D%0Acheck()%3B%0Aui.status('Creating%20zip')%3B%0Aui.file('')%3B%0Aconst%20blob%20%3D%20await%20zip.generateAsync(%7B%20type%3A%20'blob'%20%7D%2C%20meta%20%3D%3E%20ui.progress(90%20%2B%20meta.percent%20%2F%2010))%3B%0Acheck()%3B%0Aconst%20a%20%3D%20document.createElement('a')%3B%0Aa.href%20%3D%20URL.createObjectURL(blob)%3B%0Aa.download%20%3D%20%60%24%7BmoduleName%7D.zip%60%3B%0Aa.click()%3B%0AsetTimeout(()%20%3D%3E%20URL.revokeObjectURL(a.href)%2C%2010000)%3B%0Aui.progress(100)%3B%0Afinish(%60Done.%20%24%7Badded.size%7D%20file%24%7Badded.size%20%3D%3D%3D%201%20%3F%20''%20%3A%20's'%7D%20saved.%60%2C%20'done')%3B%0A%7D%20catch%20(e)%20%7B%0Aif%20(cancelled)%20%7B%0Afinish('Cancelled.%20Nothing%20was%20downloaded.')%3B%0A%7D%20else%20%7B%0Aconsole.error(e)%3B%0Afinish(%60Something%20went%20wrong%3A%20%24%7Be.message%7D%60%2C%20'error')%3B%0A%7D%0A%7D%0A%7D)()%3B" draggable="true"><img src="logo.svg" alt="">Modzip</a>
       <p class="hint" id="hint">Can't see your bookmarks bar? Show it with the keys below.</p>
-      <p class="keys"><kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on a Mac &nbsp;&middot;&nbsp; <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on Windows</p>
+      <p class="keys"><kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on a Mac &nbsp;&middot;&nbsp; <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on Windows &nbsp;&middot;&nbsp; In Safari, allow downloads if asked</p>
       <button class="copy" id="copy" type="button">Can't drag it? Copy the bookmark instead</button>
 
       <div class="facts">
@@ -284,7 +305,7 @@
         <div class="fact">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
           <h3>Any Moodle 4 site</h3>
-          <p>Works at any university or college, in Chrome, Brave, Edge and Firefox.</p>
+          <p>Works at any university or college, in Chrome, Edge, Brave, Firefox and Safari on a computer.</p>
         </div>
         <div class="fact">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-9.3-9A5.2 5.2 0 0 1 12 6.6 5.2 5.2 0 0 1 21.3 12C19 16.6 12 21 12 21z"/></svg>
@@ -357,6 +378,14 @@
           navigator.clipboard.writeText(code).then(done, function () { fallback(code); done(); });
         } else { fallback(code); done(); }
       });
+      // Live GitHub star count, falling back to "Star" if unavailable
+      fetch('https://api.github.com/repos/ashgar99/moodle-module-downloader')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (d && d.stargazers_count > 0) document.getElementById('stars').textContent = d.stargazers_count.toLocaleString('en-GB');
+        })
+        .catch(function () {});
+
       function fallback(text) {
         var area = document.createElement('textarea');
         area.value = text; area.style.position = 'fixed'; area.style.opacity = '0';
