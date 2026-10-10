@@ -1,0 +1,42 @@
+# Modzip
+
+> Modzip is a free, open-source bookmark that downloads every file from a Moodle 4 module as a single zip, with a folder for each section. It runs in your browser with your existing Moodle login, so there is nothing to install.
+
+- Website: https://ashgar99.github.io/moodle-module-downloader/
+- Source code: https://github.com/ashgar99/moodle-module-downloader
+- Licence: MIT. Free, with no account, adverts or tracking.
+- Part of Unikit, free tools for university students: https://ashgar99.github.io/
+
+## Features
+
+- Downloads every file and folder in a Moodle module at once
+- Organises the zip into numbered folders by section
+- Keeps the structure of Moodle folders
+- Works with Moodle 4
+- No extension or software to install
+
+## Questions and answers
+
+### What is Modzip?
+
+Modzip is a free, open-source bookmark that downloads every file from a Moodle 4 module as a single zip, with a numbered folder for each section. It runs in your browser with your existing Moodle login, so there is nothing to install.
+
+### How do I download all the files from a Moodle course at once?
+
+Drag the Modzip button onto your bookmarks bar, open the main page of a Moodle module while logged in, and click the bookmark. Modzip collects every file and folder in the module and downloads them as one zip, organised by section.
+
+### Does Modzip work with my university’s Moodle?
+
+Modzip works with Moodle 4, which most universities now use. Your university does not need to install or approve anything, because it uses the same access you already have when you are logged in.
+
+### How is Modzip different from a browser extension?
+
+There is nothing to install. Modzip is a bookmark containing a short, readable script, so it works in Chrome, Edge, Brave, Arc, Opera, Firefox and Safari, and older extensions that no longer support Moodle 4 do not affect it.
+
+### Is it safe to use?
+
+Modzip only talks to your own Moodle site using the login you already have, and loads one open-source library to build the zip. Nothing is uploaded or collected, and the code is public on GitHub.
+
+### What does Modzip not download?
+
+Lecture recordings hosted on platforms such as Panopto, links to external websites, Turnitin submissions and anything you do not have permission to view are not included.
