@@ -121,6 +121,11 @@ Inspired by [harsilspatel/moodle-downloader](https://github.com/harsilspatel/moo
 The source lives in [`moodle-downloader.js`](moodle-downloader.js). After editing it, run `node build.js` to regenerate `bookmarklet.txt` and the install page in `docs/`.
 
 
+## Unikit 🎒
+
+Modzip is part of Unikit, a set of free tools for students: [Subzip](https://ashgar99.github.io/subzip/), [Duecal](https://ashgar99.github.io/duecal/), [Termcal](https://ashgar99.github.io/termcal/), [Gradewise](https://ashgar99.github.io/gradewise/), [Wordfair](https://ashgar99.github.io/wordfair/) and [Readable](https://ashgar99.github.io/readable/).
+
+
 ## Licence 📑
 
 [MIT](LICENSE)
