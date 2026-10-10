@@ -1,4 +1,4 @@
-<p align="center"><img src="site/logo.svg" width="72" height="72" alt=""></p>
+<p align="center"><img src="docs/logo.svg" width="72" height="72" alt=""></p>
 <h3 align="center">Modzip</h3>
 <p align="center">Save every file from a Moodle 4 module in one click, as a single zip organised into folders by section.</p>
 
