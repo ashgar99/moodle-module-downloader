@@ -194,13 +194,15 @@
     .tree b { color: var(--blue); font-weight: 400; }
 
     /* Install */
-    .install { text-align: center; position: relative; }
-    .install::before {
-      content: ""; position: absolute; z-index: -1; left: 50%; width: 100vw; transform: translateX(-50%); top: -140px; bottom: -180px; pointer-events: none; opacity: 0.6;
+    .install { text-align: center; }
+    .made { position: relative; text-align: center; }
+    .made::before {
+      content: ""; position: absolute; z-index: -1; left: 50%; width: 100vw; transform: translateX(-50%); top: -200px; bottom: -200px; pointer-events: none; opacity: 0.85;
       background:
-        linear-gradient(207deg, transparent 50%, rgba(0, 0, 0, 0.45) 50.4%, rgba(0, 0, 0, 0.2) 70%, transparent 90%),
-        radial-gradient(ellipse 60% 55% at 72% 30%, rgba(150, 180, 215, 0.35), transparent 70%),
-        radial-gradient(ellipse 50% 50% at 25% 65%, rgba(90, 125, 165, 0.25), transparent 70%);
+        linear-gradient(200deg, transparent 56%, rgba(0, 0, 0, 0.5) 56.4%, rgba(0, 0, 0, 0.25) 72%, transparent 92%),
+        radial-gradient(ellipse 65% 55% at 70% 35%, rgba(98, 82, 220, 0.55), transparent 70%),
+        radial-gradient(ellipse 55% 50% at 22% 60%, rgba(60, 70, 190, 0.45), transparent 70%),
+        radial-gradient(ellipse 80% 40% at 50% 100%, rgba(40, 30, 120, 0.5), transparent 70%);
       -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 78%, transparent); mask-image: linear-gradient(transparent, #000 18%, #000 78%, transparent);
     }
     .drag {
@@ -221,11 +223,33 @@
     .copy { background: none; border: 0; color: var(--softer); font: inherit; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; margin-top: 22px; }
     .copy:hover { color: var(--text); }
 
-    .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 96px; }
-    .fact { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); border-radius: 24px; padding: 28px 24px; text-align: center; }
-    .fact svg { color: var(--blue); margin-bottom: 14px; }
-    .fact h3 { font-size: 1.05rem; font-weight: 500; color: #fff; margin-bottom: 4px; }
-    .fact p { color: var(--soft); font-size: 14.5px; }
+    .made .sub a { color: var(--blue); }
+    .made .sub a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .cards { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; margin-top: 48px; }
+    .card { min-width: 0; display: flex; flex-direction: column; align-items: center; padding: 40px; border-radius: 24px; background: rgba(28, 28, 32, 0.72); box-shadow: inset 0 0 0 1px var(--line); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
+    .card-icon { width: 96px; height: 96px; border-radius: 24px; display: grid; place-items: center; color: #fff; background: linear-gradient(145deg, #2c2c33, #0a0a0c); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 12px 30px rgba(0, 0, 0, 0.45); }
+    .card h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 400; letter-spacing: -0.01em; color: #fff; margin: 32px 0 10px; }
+    .card p { color: var(--soft); font-size: 1.05rem; max-width: 460px; margin-bottom: 36px; }
+    .card-vis { width: 100%; margin-top: auto; flex: none; border-radius: 16px; overflow: hidden; background: #0b0b0d; box-shadow: inset 0 0 0 1px var(--line), 0 20px 40px rgba(0, 0, 0, 0.35); text-align: left; }
+    .win-top { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 12px; background: #17171a; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06); font-size: 12px; color: var(--softer); }
+    .win-top i { width: 10px; height: 10px; border-radius: 50%; background: #3a3a40; }
+    .win-top .addr { flex: 1; margin-left: 10px; height: 22px; border-radius: 6px; background: #0b0b0d; display: flex; align-items: center; padding: 0 10px; white-space: nowrap; overflow: hidden; }
+    .win-top .title { flex: 1; text-align: center; color: var(--soft); margin-right: 44px; }
+    .bw-bar { display: flex; align-items: center; gap: 16px; height: 30px; padding: 0 14px; font-size: 12px; color: var(--softer); background: #121215; }
+    .bw-bar .bm { display: inline-flex; align-items: center; gap: 6px; color: #fff; padding: 3px 9px; border-radius: 7px; background: rgba(92, 174, 255, 0.16); }
+    .bw-bar .bm img { width: 13px; height: 13px; }
+    .bw-page { position: relative; height: 230px; padding: 20px 22px; background: #e9e9ec; }
+    .bw-page b { display: block; height: 10px; border-radius: 5px; background: #c9c9cf; margin-bottom: 12px; }
+    .bw-page b.h { width: 55%; height: 16px; background: #a9a9b1; margin-bottom: 20px; }
+    .bw-page b.s { width: 82%; } .bw-page b.t { width: 64%; } .bw-page b.u { width: 74%; }
+    .bw-panel { position: absolute; right: 18px; bottom: 18px; width: 240px; padding: 14px 16px; border-radius: 14px; background: #111; color: #fff; font-size: 12.5px; box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35); }
+    .bw-panel .pt { display: flex; align-items: center; gap: 7px; font-weight: 600; margin-bottom: 6px; }
+    .bw-panel .pt span { width: 13px; height: 13px; border-radius: 50%; background: linear-gradient(135deg, #5cb4ff, #1f5eff); }
+    .bw-panel .ps { color: var(--soft); margin-bottom: 9px; }
+    .bw-panel .pb { height: 5px; border-radius: 3px; background: var(--blue); }
+    .fw-list { padding: 8px 0; height: 264px; overflow: hidden; font-size: 13px; color: rgba(255, 255, 255, 0.85); }
+    .fw-row { display: flex; align-items: center; gap: 9px; height: 28px; padding-right: 14px; }
+    .fw-row:nth-child(even) { background: rgba(255, 255, 255, 0.03); }
 
     footer { position: relative; padding: 256px 24px 32px; color: var(--softer); font-size: 14px; overflow: hidden; }
     footer::before {
@@ -255,7 +279,7 @@
 
     @media (max-width: 900px) {
       .tiles { grid-template-columns: 1fr; }
-      .facts { grid-template-columns: 1fr 1fr; }
+      .cards { grid-template-columns: minmax(0, 1fr); }
     }
     @media (max-width: 560px) {
       nav { gap: 12px; padding: 0 20px 0 12px; }
@@ -270,7 +294,9 @@
       @keyframes wall-bottom-m { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(calc(-355% - 128px)); } }
       .mp-index { display: none; }
       section { padding-top: 128px; }
-      .facts { grid-template-columns: 1fr; }
+      .card { padding: 32px 20px; }
+      .bw-panel { width: auto; left: 14px; right: 14px; }
+      .bw-bar span:last-child { display: none; }
       .f-card { grid-template-columns: 1fr 1fr; padding: 32px 24px; }
       .f-brand { grid-column: 1 / -1; }
       .drag { font-size: 20px; height: 66px; }
@@ -378,29 +404,35 @@
       <p class="keys"><kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on a Mac &nbsp;&middot;&nbsp; <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>B</kbd> on Windows &nbsp;&middot;&nbsp; In Safari, allow downloads if asked</p>
       <button class="copy" id="copy" type="button">Can't drag it? Copy the bookmark instead</button>
 
-      <div class="facts">
-        <div class="fact">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          <h3>Private</h3>
-          <p>Runs in your browser with your own login. Nothing is sent anywhere else.</p>
+      <p class="sub" style="font-size: 15px; margin-top: 56px;">Lecture recordings, links to other websites and your own submissions are not included. Please keep downloaded materials for your own use.</p>
+    </section>
+
+    <section id="made" class="made">
+      <h2>Made by a Student, for Students</h2>
+      <p class="sub">Modzip was built by a student of 2026 to keep their own course materials, and shared so that anyone can do the same. It is <a href="https://github.com/ashgar99/moodle-module-downloader">open source</a>, with no ads, tracking or paid version.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
+          <h3>Private, with nothing to install</h3>
+          <p>It runs in your browser with your own Moodle login. There is no extension, app or account, and nothing is sent anywhere else.</p>
+          <div class="card-vis" aria-hidden="true">
+            <div class="win-top"><i></i><i></i><i></i><span class="addr">moodle.youruni.ac.uk/course/view.php?id=1042</span></div>
+            <div class="bw-bar"><span>Mail</span><span>Library</span><span class="bm"><img src="logo.svg" alt="">Modzip</span><span>Timetable</span></div>
+            <div class="bw-page"><b class="h"></b><b class="s"></b><b class="t"></b><b class="u"></b><b class="t"></b><b class="s"></b>
+              <div class="bw-panel"><div class="pt"><span></span>Modzip</div><div class="ps">Done. 24 files saved.</div><div class="pb"></div></div>
+            </div>
+          </div>
         </div>
-        <div class="fact">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
-          <h3>Nothing to install</h3>
-          <p>No extension, app or account. It is just a bookmark.</p>
-        </div>
-        <div class="fact">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-          <h3>Any Moodle 4 site</h3>
-          <p>Works at any university or college, in Chrome, Edge, Brave, Firefox and Safari on a computer.</p>
-        </div>
-        <div class="fact">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-9.3-9A5.2 5.2 0 0 1 12 6.6 5.2 5.2 0 0 1 21.3 12C19 16.6 12 21 12 21z"/></svg>
-          <h3>Free for good</h3>
-          <p>Open source, with no ads, tracking or paid version.</p>
+        <div class="card">
+          <div class="card-icon"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7A1.5 1.5 0 0 1 5 5.5h4.5l2 2.5H19A1.5 1.5 0 0 1 20.5 9.5V18a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 18z"/></svg></div>
+          <h3>Sorted, just like on Moodle</h3>
+          <p>Every section gets its own numbered folder, and Moodle folders keep their structure. Works with any Moodle 4 site in Chrome, Edge, Brave, Firefox and Safari.</p>
+          <div class="card-vis" aria-hidden="true">
+            <div class="win-top"><i></i><i></i><i></i><span class="title">Introduction to Example Studies.zip</span></div>
+            <div class="fw-list"><div class="fw-row" style="padding-left:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#5caeff"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h5l2 2.5h8A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><span>01 Welcome</span></div><div class="fw-row" style="padding-left:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#5caeff"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h5l2 2.5h8A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><span>02 Module Overview</span></div><div class="fw-row" style="padding-left:36px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.6"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span>Module Handbook.pdf</span></div><div class="fw-row" style="padding-left:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#5caeff"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h5l2 2.5h8A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><span>03 Week 1 Introduction</span></div><div class="fw-row" style="padding-left:36px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.6"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span>Lecture 1 slides.pptx</span></div><div class="fw-row" style="padding-left:36px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#5caeff"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h5l2 2.5h8A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><span>Readings</span></div><div class="fw-row" style="padding-left:58px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.6"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span>Chapter 2.pdf</span></div><div class="fw-row" style="padding-left:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#5caeff"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h5l2 2.5h8A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><span>04 Week 2 Sources</span></div><div class="fw-row" style="padding-left:36px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.6"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg><span>Seminar questions.docx</span></div></div>
+          </div>
         </div>
       </div>
-      <p class="sub" style="font-size: 15px; margin-top: 56px;">Lecture recordings, links to other websites and your own submissions are not included. Please keep downloaded materials for your own use.</p>
     </section>
   </main>
 
@@ -426,7 +458,7 @@
         <a href="https://github.com/ashgar99/moodle-module-downloader#responsible-use-">Responsible use</a>
       </div>
       <div class="f-base">
-        <span>Free and open source, with no ads or tracking.</span>
+        <span>Made by a student of 2026. Free and open source, with no ads or tracking.</span>
         <span>Not affiliated with or endorsed by Moodle.</span>
       </div>
     </div>
