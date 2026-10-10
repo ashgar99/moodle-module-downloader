@@ -23,6 +23,7 @@
       --blue-light: #cfe3f0;
       --blue-deep: #1f5eff;
       --on-blue: #000;
+      --grain: url("grain.png");
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -79,8 +80,8 @@
         linear-gradient(180deg, #172738 0%, #0d1520 55%, #05070a 100%);
     }
     .hero::after {
-      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.09; mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.2; mix-blend-mode: overlay;
+      background-image: var(--grain); background-size: 128px 128px;
     }
     .wordmark { display: inline-flex; align-items: center; gap: 32px; margin-top: 96px; }
     .wordmark img { width: clamp(80px, 9vw, 128px); height: auto; }
@@ -193,7 +194,15 @@
     .tree b { color: var(--blue); font-weight: 400; }
 
     /* Install */
-    .install { text-align: center; }
+    .install { text-align: center; position: relative; }
+    .install::before {
+      content: ""; position: absolute; z-index: -1; left: 50%; width: 100vw; transform: translateX(-50%); top: -140px; bottom: -180px; pointer-events: none; opacity: 0.6;
+      background:
+        linear-gradient(207deg, transparent 50%, rgba(0, 0, 0, 0.45) 50.4%, rgba(0, 0, 0, 0.2) 70%, transparent 90%),
+        radial-gradient(ellipse 60% 55% at 72% 30%, rgba(150, 180, 215, 0.35), transparent 70%),
+        radial-gradient(ellipse 50% 50% at 25% 65%, rgba(90, 125, 165, 0.25), transparent 70%);
+      -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 78%, transparent); mask-image: linear-gradient(transparent, #000 18%, #000 78%, transparent);
+    }
     .drag {
       display: inline-flex; align-items: center; gap: 14px;
       height: 72px; padding: 0 40px 0 18px; margin-top: 52px;
@@ -218,11 +227,31 @@
     .fact h3 { font-size: 1.05rem; font-weight: 500; color: #fff; margin-bottom: 4px; }
     .fact p { color: var(--soft); font-size: 14.5px; }
 
-    footer { padding: 256px 0 56px; text-align: center; color: var(--softer); font-size: 14px; }
-    footer a { color: var(--soft); transition: opacity 0.2s; }
-    footer .f-mark { display: inline-flex; align-items: center; gap: 10px; color: var(--text); font-weight: 600; margin-bottom: 14px; }
-    footer .f-mark img { width: 28px; height: 28px; }
-    footer a:hover { color: var(--blue); }
+    footer { position: relative; padding: 256px 24px 32px; color: var(--softer); font-size: 14px; overflow: hidden; }
+    footer::before {
+      content: ""; position: absolute; left: -10%; right: -10%; bottom: 0; height: 80%; z-index: -1; pointer-events: none; filter: blur(30px);
+      background:
+        radial-gradient(ellipse 60% 70% at 50% 92%, rgba(31, 94, 255, 0.75), transparent 72%),
+        radial-gradient(ellipse 38% 60% at 20% 96%, rgba(92, 174, 255, 0.55), transparent 72%),
+        radial-gradient(ellipse 38% 60% at 82% 96%, rgba(80, 100, 255, 0.6), transparent 72%),
+        linear-gradient(transparent 55%, rgba(20, 50, 140, 0.5));
+    }
+    footer::after {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.2; mix-blend-mode: overlay;
+      background-image: var(--grain); background-size: 128px 128px;
+    }
+    .f-card {
+      max-width: 1216px; margin: 0 auto; padding: 48px; border-radius: 32px;
+      background: rgba(24, 24, 24, 0.55); box-shadow: inset 0 0 0 1px var(--line);
+      -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+      display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 32px;
+    }
+    .f-brand { display: flex; flex-direction: column; gap: 16px; color: #fff; font-size: 22px; }
+    .f-brand img { width: 48px; height: 48px; }
+    .f-col h4 { color: #fff; font-size: 17px; font-weight: 500; margin-bottom: 16px; }
+    .f-col a { display: block; color: var(--soft); font-size: 16px; line-height: 2.4; transition: color 0.2s; }
+    .f-col a:hover { color: var(--blue); }
+    .f-base { grid-column: 1 / -1; margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; }
 
     @media (max-width: 900px) {
       .tiles { grid-template-columns: 1fr; }
@@ -242,6 +271,8 @@
       .mp-index { display: none; }
       section { padding-top: 128px; }
       .facts { grid-template-columns: 1fr; }
+      .f-card { grid-template-columns: 1fr 1fr; padding: 32px 24px; }
+      .f-brand { grid-column: 1 / -1; }
       .drag { font-size: 20px; height: 66px; }
       .quote { padding: 64px 24px 56px; }
       .quote .qo, .quote .qc { font-size: 48px; }
@@ -374,9 +405,31 @@
   </main>
 
   <footer>
-    <div class="f-mark"><img src="logo.svg" alt="">Modzip</div>
-    <p>Free and open source under the MIT licence. Not affiliated with Moodle.</p>
-    <p style="margin-top: 8px;"><a href="https://github.com/ashgar99/moodle-module-downloader">View on GitHub</a></p>
+    <div class="f-card">
+      <div class="f-brand"><img src="logo.svg" alt="">Modzip</div>
+      <div class="f-col">
+        <h4>Modzip</h4>
+        <a href="#get">Get Modzip</a>
+        <a href="#how">How it works</a>
+        <a href="#why">Why</a>
+      </div>
+      <div class="f-col">
+        <h4>Help</h4>
+        <a href="https://github.com/ashgar99/moodle-module-downloader#browser-support-">Browser support</a>
+        <a href="https://github.com/ashgar99/moodle-module-downloader#troubleshooting-">Troubleshooting</a>
+        <a href="https://github.com/ashgar99/moodle-module-downloader/issues">Report a problem</a>
+      </div>
+      <div class="f-col">
+        <h4>Project</h4>
+        <a href="https://github.com/ashgar99/moodle-module-downloader">Source code</a>
+        <a href="https://github.com/ashgar99/moodle-module-downloader/blob/main/LICENSE">MIT licence</a>
+        <a href="https://github.com/ashgar99/moodle-module-downloader#responsible-use-">Responsible use</a>
+      </div>
+      <div class="f-base">
+        <span>Free and open source, with no ads or tracking.</span>
+        <span>Not affiliated with or endorsed by Moodle.</span>
+      </div>
+    </div>
   </footer>
 
   <script>
